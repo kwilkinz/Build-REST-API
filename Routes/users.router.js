@@ -1,32 +1,21 @@
 import express from "express";
 const router = express.Router();
+import {
+  getUsers,
+  createUser,
+  getUser,
+  deleteUser,
+  updateUser,
+} from "./users.controller";
 
-// Fake Data
-const users = [
-  {
-    firstName: "Jane",
-    lastName: "Doe",
-    age: 25,
-  },
-  {
-    firstName: "Charlie",
-    lastName: "Doe",
-    age: 28,
-  },
-];
+router.get("/", getUsers);
 
-/**
- * router.method(route), callback
- * All routes in users.routers are attached onto index.js so...
- * Ex: (1) localhost:5000/users/
- */
+router.post("/", createUser);
 
-// (1)
-router.get("/", (req, res) => {
-  res.send("Getting all Users!");
-});
+router.get("/:id", getUser);
 
-// send data to the server - values in forms - for them to be created.
-router.post("/", (req, res) => {});
+router.delete("/:id", deleteUser);
+
+router.patch("/:id", updateUser);
 
 export default router;
